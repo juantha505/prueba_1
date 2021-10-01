@@ -40,8 +40,9 @@
 		        <label>Password:</label>
 		         <input type="password" name="txtpassword" class="form-control" value="${usuarioSeleccionado.getPassword()}">
 		        </div>
-		        
+		        <br>
 		        <input type="submit" class="btn btn-primary" name="accion" value="Agregar">
+		        
 		        <input type="submit" class="btn btn-success" name="accion" value="Actualizar">
        	 </form>
     </div>
