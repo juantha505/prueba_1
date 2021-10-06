@@ -15,33 +15,34 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class TestJSON {
+public class TestJSON_productos {
 	
 	private static URL url;
 	private static String sitio = "http://localhost:5000/";
 	
-	public static ArrayList<Usuarios> parsingUsuarios(String json) throws ParseException {
+	public static ArrayList<Productos> parsingProductos(String json) throws ParseException {
+		
 		JSONParser jsonParser = new JSONParser();
-		ArrayList<Usuarios> lista = new ArrayList<Usuarios>();
-		JSONArray usuarios = (JSONArray) jsonParser.parse(json);
-		Iterator i = usuarios.iterator();
-
-        while (i.hasNext()) {
+		ArrayList<Productos> lista = new ArrayList<Productos>();
+		JSONArray productos = (JSONArray) jsonParser.parse(json);
+		Iterator i = productos.iterator();
+		while (i.hasNext()) {
 		JSONObject innerObj = (JSONObject) i.next();
-			Usuarios usuario = new Usuarios();
-			usuario.setCedula_usuario(Long.parseLong(innerObj.get("cedula_usuario").toString()));
-			usuario.setEmail_usuario(innerObj.get("email_usuario").toString());
-			usuario.setNombre_usuario(innerObj.get("nombre_usuario").toString());
-			usuario.setPassword(innerObj.get("password").toString());
-			usuario.setUsuario(innerObj.get("usuario").toString());
-			lista.add(usuario);
+			Productos producto = new Productos();
+			producto.setCodigo_producto(Long.parseLong(innerObj.get("codigo_producto").toString()));
+			producto.setIvacompra(Double.parseDouble(innerObj.get("ivacompra").toString()));
+			producto.setNitproveedor(Long.parseLong(innerObj.get("nitproveedor").toString()));
+			producto.setNombre_producto(innerObj.get("nombre_producto").toString());
+			producto.setPrecio_compra(Double.parseDouble(innerObj.get("precio_compra").toString()));
+			producto.setPrecio_venta(Double.parseDouble(innerObj.get("precio_venta").toString()));
+			lista.add(producto);
 		}
 		return lista;
 	}
 	
-    public static ArrayList<Usuarios> getJSON() throws IOException, ParseException{
+    public static ArrayList<Productos> getJSON() throws IOException, ParseException{
 		
-		url = new URL(sitio +"usuarios/listar");
+		url = new URL(sitio +"productos/listar");
 		HttpURLConnection http = (HttpURLConnection)url.openConnection();
 		
 		http.setRequestMethod("GET");
@@ -55,16 +56,16 @@ public class TestJSON {
 		   json += (char)inp[i];
 		}
 		
-		ArrayList<Usuarios> lista = new ArrayList<Usuarios>();
-		lista = parsingUsuarios(json);
+		ArrayList<Productos> lista = new ArrayList<Productos>();
+		lista = parsingProductos(json);
 		http.disconnect();
 		return lista;
 	}
     
-    public static int postJSON(Usuarios usuario) throws IOException {
+    public static int postJSON(Productos producto) throws IOException {
 		
 		
-		url = new URL(sitio+"usuarios/guardar");
+		url = new URL(sitio+"productos/guardar");
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();
 		
@@ -79,11 +80,12 @@ public class TestJSON {
 		http.setRequestProperty("Content-Type", "application/json");
 		
 		String data = "{"
-				+ "\"cedula_usuario\":\""+ String.valueOf(usuario.getCedula_usuario())
-				+"\",\"email_usuario\": \""+usuario.getEmail_usuario()
-				+"\",\"nombre_usuario\": \""+usuario.getNombre_usuario()
-				+"\",\"password\":\""+usuario.getPassword()
-				+"\",\"usuario\":\""+usuario.getUsuario()
+				+ "\"codigo_producto\":\""+ String.valueOf(producto.getCodigo_producto())
+				+"\",\"ivacompra\": \""+producto.getIvacompra()
+				+"\",\"nitproveedor\": \""+producto.getNitproveedor()
+				+"\",\"nombre_producto\":\""+producto.getNombre_producto()
+				+"\",\"precio_compra\":\""+producto.getPrecio_compra()
+				+"\",\"precio_venta\":\""+producto.getPrecio_venta()
 				+ "\"}";
 		byte[] out = data.getBytes(StandardCharsets.UTF_8);
 		OutputStream stream = http.getOutputStream();
@@ -94,10 +96,11 @@ public class TestJSON {
 		return respuesta;
 	}
 
-public static int putJSON(Usuarios usuario, Long id) throws IOException {
+    
+public static int putJSON(Productos producto, Long id) throws IOException {
 		
 		
-		url = new URL(sitio+"usuarios/actualizar");
+		url = new URL(sitio+"productos/actualizar");
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();
 		
@@ -112,11 +115,12 @@ public static int putJSON(Usuarios usuario, Long id) throws IOException {
 		http.setRequestProperty("Content-Type", "application/json");
 		
 		String data = "{"
-				+ "\"cedula_usuario\":\""+ id
-				+"\",\"email_usuario\": \""+usuario.getEmail_usuario()
-				+"\",\"nombre_usuario\": \""+usuario.getNombre_usuario()
-				+"\",\"password\":\""+usuario.getPassword()
-				+"\",\"usuario\":\""+usuario.getUsuario()
+				+ "\"codigo_producto\":\""+ id
+				+"\",\"ivacompra\": \""+producto.getIvacompra()
+				+"\",\"nitproveedor\": \""+producto.getNitproveedor()
+				+"\",\"nombre_producto\":\""+producto.getNombre_producto()
+				+"\",\"precio_compra\":\""+producto.getPrecio_compra()
+				+"\",\"precio_venta\":\""+producto.getPrecio_venta()
 				+ "\"}";
 		byte[] out = data.getBytes(StandardCharsets.UTF_8);
 		OutputStream stream = http.getOutputStream();
@@ -131,7 +135,7 @@ public static int putJSON(Usuarios usuario, Long id) throws IOException {
 public static int deleteJSON(Long id) throws IOException {
 	
 	
-	url = new URL(sitio+"usuarios/eliminar/" + id);
+	url = new URL(sitio+"productos/eliminar/" + id);
 	HttpURLConnection http;
 	http = (HttpURLConnection)url.openConnection();
 	
@@ -150,6 +154,4 @@ public static int deleteJSON(Long id) throws IOException {
 	http.disconnect();
 	return respuesta;
 }
-
 }
-

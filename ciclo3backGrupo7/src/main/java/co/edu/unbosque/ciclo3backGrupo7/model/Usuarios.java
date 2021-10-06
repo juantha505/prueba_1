@@ -41,6 +41,5 @@ public class Usuarios {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
+	}	
 }

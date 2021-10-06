@@ -12,37 +12,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.unbosque.ciclo3backGrupo7.dao.UsuariosDAO;
-import co.edu.unbosque.ciclo3backGrupo7.model.Usuarios;
+import co.edu.unbosque.ciclo3backGrupo7.dao.ClientesDAO;
+import co.edu.unbosque.ciclo3backGrupo7.model.Clientes;
 
 @RestController // Indica que esta clase es de tipo REST
-@RequestMapping("usuarios")
-public class UsuariosAPI {
+@RequestMapping("clientes")
+public class ClientesAPI {
 	
 	@Autowired // inyecta la dependencia de todos los metodos JPA para UsuariosDAO
-    private UsuariosDAO usuariosDAO;
+    private ClientesDAO clientesDAO;
 	
 	@PostMapping("/guardar")
-	public void guardar(@RequestBody Usuarios usuarios) {
-		usuariosDAO.save(usuarios);		
+	public void guardar(@RequestBody Clientes clientes) {
+		clientesDAO.save(clientes);		
 	}
-	private UsuariosDAO usuarioController;
+	private ClientesDAO clienteController;
 	
 	@GetMapping("/listar")
-	public List<Usuarios> listar () {
-		return usuariosDAO.findAll();
+	public List<Clientes> listar () {
+		return clientesDAO.findAll();
 		
 	}
 	
 	
 	@DeleteMapping("/eliminar/{id}")
 	public void eliminar(@PathVariable("id") Long id) {
-		usuariosDAO.deleteById(id);
+		clientesDAO.deleteById(id);
 	}
 	
 	@PutMapping("/actualizar")
-	public void actualizar(@RequestBody Usuarios usuarios) {
-		usuariosDAO.save(usuarios);
+	public void actualizar(@RequestBody Clientes clientes) {
+		clientesDAO.save(clientes);
 		
 	
 
