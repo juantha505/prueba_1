@@ -2,15 +2,16 @@ package co.edu.unbosque.ciclo3demo;
 
 public class Clientes {
 	
-	private long cedula_cliente;
+	private Long cedula_cliente;
 	private String nombre_cliente;
 	private String direccion_cliente;
 	private String telefono_cliente;
 	private String email_cliente;
-	public long getCedula_cliente() {
+	
+	public Long getCedula_cliente() {
 		return cedula_cliente;
 	}
-	public void setCedula_cliente(long cedula_cliente) {
+	public void setCedula_cliente(Long cedula_cliente) {
 		this.cedula_cliente = cedula_cliente;
 	}
 	public String getNombre_cliente() {

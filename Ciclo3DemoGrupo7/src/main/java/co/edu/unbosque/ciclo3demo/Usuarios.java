@@ -8,6 +8,8 @@ public class Usuarios {
 	private String usuario;
 	private String password;
 	
+	
+	
 	public long getCedula_usuario() {
 		return cedula_usuario;
 	}
