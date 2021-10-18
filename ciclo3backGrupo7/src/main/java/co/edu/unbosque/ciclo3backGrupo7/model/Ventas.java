@@ -12,6 +12,8 @@ public class Ventas {
 	private Long cedula_usuario;
 	private Long iva_venta;
 	private Long total_venta;
+	private Long valor_venta;
+	
 	public Long getCodigo_venta() {
 		return codigo_venta;
 	}
@@ -48,6 +50,8 @@ public class Ventas {
 	public void setValor_venta(Long valor_venta) {
 		this.valor_venta = valor_venta;
 	}
-	private Long valor_venta;
+	
+	
+	
 
 }

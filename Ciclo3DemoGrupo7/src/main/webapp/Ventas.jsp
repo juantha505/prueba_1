@@ -71,7 +71,7 @@
 			<div class="card-header">
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Numero de Factura</label>
-					<input class="form-control col-md-4" type="text" name="numerofactura" value="">
+					<input class="form-control col-md-4" type="text" name="numerofactura" value="${numerofactura}">
 				</div>
 			</div>
 			<div class="card-body">
@@ -88,15 +88,17 @@
 						</tr>
 					</thead>
 					<tbody>
+					  <c:forEach var="lista" items="${listaventas}">
 						<tr>
-							<th></th>
-							<th></th>
-							<th></th>
-							<th></th>
-							<th></th>
-							<th></th>
-							<th></th>
+							<th>${lista.getCodigo_detalle_venta()}</th>
+							<td>${lista.getCodigo_producto()}</td>
+							<td>${lista.getDescripcion_producto()}</td>
+							<td>${lista.getPrecio_producto()}</td>
+							<td>${lista.getCantidad_producto()}</td>
+							<td>${lista.getValor_iva()}</td>
+							<td>${lista.getValor_venta()}</td>
 						</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
@@ -107,15 +109,15 @@
 					<label>Total a Pagar</label>
 				</div>
 				<div class="col-md-4">
-					<input type="text" name="txtsubtotal" class="form-control" placeholder="$ 00.000.00" disabled="disabled" value="">
-					<input type="text" name="txttotaliva" class="form-control" placeholder="$ 00.000.00" disabled="disabled" value="">
-					<input type="text" name="txttotalapagar" class="form-control" placeholder="$ 00.000.00" disabled="disabled" value="">
+					<input type="text" name="txtsubtotal" class="form-control" placeholder="$ 00.000.00" disabled="disabled" value="${totalsubtotal}">
+					<input type="text" name="txttotaliva" class="form-control" placeholder="$ 00.000.00" disabled="disabled" value="${totaliva}">
+					<input type="text" name="txttotalpagar" class="form-control" placeholder="$ 00.000.00" disabled="disabled" value="${totalpagar}">
 				</div>
 			</div>
 		</div>
 		<div class="card-footer">
 			<div class="col-md-8">
-				<a class="btn btn-success" onclick="print()" href="Controlador?menu=Ventas&accion=GenerarVenta">Generar Venta</a>
+				<a class="btn btn-success" onclick="print()" href="Controlador?menu=Ventas&accion=GenerarVenta&cedulacliente=${clienteSeleccionado.getCedula_cliente()}&UsuarioActivo=${usuarioSeleccionado.getCedula_usuario()}&numerofactura=${numerofactura}">Generar Venta</a>
 				<a class="btn btn-danger" href="Controlador?menu=Ventas&accion=NuevaVenta">Nueva Venta</a>
 			</div>
 		</div>

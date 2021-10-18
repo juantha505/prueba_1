@@ -4,9 +4,28 @@ public class Ventas {
 	private Long codigo_venta;
 	private Long cedula_cliente;
 	private Long cedula_usuario;
-	private Long iva_venta;
-	private Long total_venta;
-	private Long valor_venta;
+	private double iva_venta;
+	private double total_venta;
+	private double valor_venta;
+	
+	public double getIva_venta() {
+		return iva_venta;
+	}
+	public void setIva_venta(double iva_venta) {
+		this.iva_venta = iva_venta;
+	}
+	public double getTotal_venta() {
+		return total_venta;
+	}
+	public void setTotal_venta(double total_venta) {
+		this.total_venta = total_venta;
+	}
+	public double getValor_venta() {
+		return valor_venta;
+	}
+	public void setValor_venta(double valor_venta) {
+		this.valor_venta = valor_venta;
+	}
 	public Long getCodigo_venta() {
 		return codigo_venta;
 	}
@@ -27,23 +46,5 @@ public class Ventas {
 	public void setCedula_usuario(Long cedula_usuario) {
 		this.cedula_usuario = cedula_usuario;
 	}
-	public Long getIva_venta() {
-		return iva_venta;
-	}
-	public void setIva_venta(Long iva_venta) {
-		this.iva_venta = iva_venta;
-	}
-	public Long getTotal_venta() {
-		return total_venta;
-	}
-	public void setTotal_venta(Long total_venta) {
-		this.total_venta = total_venta;
-	}
-	public Long getValor_venta() {
-		return valor_venta;
-	}
-	public void setValor_venta(Long valor_venta) {
-		this.valor_venta = valor_venta;
-	}
-
+	
 }

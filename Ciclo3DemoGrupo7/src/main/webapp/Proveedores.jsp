@@ -75,7 +75,7 @@
 				<td> 
 	               <a class="btn btn-warning" href="Controlador?menu=Proveedores&accion=Cargar&id=<%=proveedor.getNitproveedor()%>">Editar</a>
 	               <a class="btn btn-danger" href="Controlador?menu=Proveedores&accion=Eliminar&id=<%=proveedor.getNitproveedor()%>">Eliminar</a>
-            	</td>
+            	</td>                              
             </tr>
             <%}%>
         </tbody>

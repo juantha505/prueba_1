@@ -35,11 +35,11 @@ public class TestJSONProveedores {
 		    proveedor.setNombre_proveedor(innerObj.get("nombre_proveedor").toString());
 		    proveedor.setTelefono_proveedor(innerObj.get("telefono_proveedor").toString());
 		    lista.add(proveedor);
-		    System.out.println(proveedor.getNitproveedor());
-		    System.out.println(proveedor.getNombre_proveedor());
-		    System.out.println(proveedor.getCiudad_proveedor());
-		    System.out.println(proveedor.getDireccion_proveedor());
-		    System.out.println(proveedor.getTelefono_proveedor());
+		    //System.out.println(proveedor.getNitproveedor());
+		    //System.out.println(proveedor.getNombre_proveedor());
+		    //System.out.println(proveedor.getCiudad_proveedor());
+		    //System.out.println(proveedor.getDireccion_proveedor());
+		    //System.out.println(proveedor.getTelefono_proveedor());
 		}
 		return lista;
 	}

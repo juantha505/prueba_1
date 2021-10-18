@@ -34,17 +34,17 @@ pageEncoding="UTF-8"%>
           
           
           </form>
+          </div>
       </div>
-      <div class= "col-md-7 seccion2">
-         <div class= "card">
-             <div class= "card- body">
-                    <div class= "form-group">
-                          <label> Detalle de reporte</label>
-                    </div>
+      <div class="col-md-8">
+     
+    
+    <table class="table table-primary table-striped">
+        
                     
-                    <table>
+                   
                       <c:if test="${opcion==1}">
-                          <thead  class= "thead-light">
+                          <thead  class= "thead-dark">
                               <tr>
                                     <th scope="col">Cedula</th>
                                     <th scope="col">Nombre</th>
@@ -97,8 +97,10 @@ pageEncoding="UTF-8"%>
                     </c:if>     
                     </table>
              </div>
-         </div>
-      </div>
+             
+             
+         
+      
 
 </body>
 </html>

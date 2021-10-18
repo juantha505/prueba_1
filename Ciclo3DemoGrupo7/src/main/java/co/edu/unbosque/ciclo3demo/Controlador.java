@@ -18,9 +18,9 @@ public class Controlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	//**** Variable generales dentro de la clase Controlador ******
-			long subtotal=0, totalpagar=0;
-			long codProducto=0, precio=0, valor_iva=0, iva=0, subtotaliva=0, acusubtotal=0;
-			long numfac=0;
+	        double subtotal=0, totalpagar=0;
+			double  precio=0, valor_iva=0, iva=0, subtotaliva=0, acusubtotal=0;
+			long numfac=0, codProducto=0;
 			int cantidad=0, item=0;
 			
 			
@@ -65,7 +65,7 @@ public class Controlador extends HttpServlet {
     			e.printStackTrace();
     		}
     	}
-    	public void mostrartFactura (String numFact, HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+    	public void mostrarFactura (String numFact, HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         	if(numFact == null) {
         		numfac = Integer.parseInt(numFact)+1;
         		
@@ -85,7 +85,7 @@ public class Controlador extends HttpServlet {
         		detalle_venta.setCodigo_producto (listaVentas.get(i).getCodigo_producto ());
         		detalle_venta.setCantidad_producto (listaVentas.get(i).getCantidad_producto());
         		detalle_venta.setValor_venta(listaVentas.get(i).getValor_venta());
-        		detalle_venta.setValor_total (listaVentas.get(i).getValor_venta ());
+        		detalle_venta.setValor_total (listaVentas.get(i).getValor_total ());
         		detalle_venta.setValor_iva(listaVentas.get(i).getValor_iva ());
         		
         		int respuesta =0;
@@ -110,7 +110,7 @@ public class Controlador extends HttpServlet {
         		
         	}
     	
-            protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         		// TODO Auto-generated method stub
 
 
@@ -120,7 +120,7 @@ public class Controlador extends HttpServlet {
     				
     String menu = request.getParameter("menu");
     String accion = request.getParameter("accion");
-    //Long  cedula_usuario_activo =Long.parseLong(request.getParameter("UsuarioActivo"));
+    //Long cedula_usuario_activo =Long.parseLong(request.getParameter("UsuarioActivo"));
     //usuarios.setCedula_usuario (cedula_usuario_activo);
     request.setAttribute("usuarioSeleccionado", usuarios);
     
@@ -505,7 +505,6 @@ public class Controlador extends HttpServlet {
     			this.buscarCliente(id, request, response);
     			
     			long cod=Long.parseLong(request.getParameter("codigoproducto"));
-    			System.out.println("entro");
     			this.buscarProducto(cod, request, response);
     			//String id1=request.getParameter("cedulacliente");
     			//this.buscarCliente(Long.parseLong(id1), request, response);
@@ -513,8 +512,9 @@ public class Controlador extends HttpServlet {
     		}else if (accion.equals("AgregarProducto")) {
     			Long id=Long.parseLong(request.getParameter("cedulacliente"));
     			this.buscarCliente(id, request, response);
+    		
     			
-    	    
+    			
     			detalle_venta = new Detalle_Ventas();
     			item++;
     			totalpagar = 0;
@@ -522,12 +522,12 @@ public class Controlador extends HttpServlet {
     			subtotaliva  = 0;
     			codProducto=Long.parseLong(request.getParameter("codigoproducto"));
     			descripcion=request.getParameter("nombreproducto");
-    			precio= Long.parseLong(request.getParameter("precioproducto"));
+    			precio= Double.parseDouble(request.getParameter("precioproducto"));
     			cantidad=Integer.parseInt(request.getParameter("cantidadproducto"));
-    			valor_iva =Long.parseLong(request.getParameter("ivaproducto"));
+    			valor_iva =Double.parseDouble(request.getParameter("ivaproducto"));
     			
     			subtotal = (precio*cantidad);
-    			valor_iva = (subtotal * iva/ 100);
+    			iva = (valor_iva*subtotal/100);
     			
     			detalle_venta.setCodigo_detalle_venta (String.valueOf(item));
     			detalle_venta.setCodigo_producto(codProducto);
@@ -535,10 +535,11 @@ public class Controlador extends HttpServlet {
     			detalle_venta.setPrecio_producto(precio);
     			detalle_venta.setCantidad_producto(cantidad);
     			detalle_venta.setCodigo_venta(numfac);
-    			detalle_venta.setValor_iva(valor_iva);
+    			detalle_venta.setValor_iva(iva);
     			detalle_venta.setValor_venta(subtotal);
     			
     			listaVentas.add(detalle_venta);
+    			
     			
     			for (int i= 0; i < listaVentas.size(); i++) {
     				acusubtotal +=listaVentas.get(i).getValor_venta();
@@ -551,31 +552,35 @@ public class Controlador extends HttpServlet {
     			request.setAttribute("listaventas", listaVentas);
     			request.setAttribute("totalsubtotal", acusubtotal);
     			request.setAttribute("totaliva", subtotaliva);
-    			request.setAttribute("totalapagar", totalpagar);
+    			request.setAttribute("totalpagar", totalpagar);
     		}
     		
     		else if (accion.equals("GenerarVenta")) {
     			
-    			cedulaCliente= request.getParameter("cedulacliente");
+    			
+    			cedulaCliente=request.getParameter("cedulacliente");
     			String numFact=request.getParameter("numerofactura");
     			
     			Ventas ventas = new Ventas();
-    			ventas.setCodigo_venta(Long.parseLong(numFact));
-    			ventas.setCedula_cliente(Long.parseLong(cedulaCliente));
-    			ventas.setCedula_usuario(usuarios.getCedula_usuario());
-    			ventas.setIva_venta(subtotaliva);
-    			ventas.setValor_venta(acusubtotal);
+    			
+    			ventas.setCodigo_venta(Long.parseLong(numFact));    			
+    			ventas.setCedula_cliente(Long.parseLong(cedulaCliente));    		
+    			ventas.setCedula_usuario(usuarios.getCedula_usuario());    		
+    			ventas.setIva_venta(subtotaliva);    		
+    			ventas.setValor_venta(acusubtotal);    		
     			ventas.setTotal_venta(totalpagar);
+    		
+    		
     			
     			int respuesta=0;
-    			
+    			System.out.println("numerofactura");
     			try {
     				respuesta= TestJSONVentas.postJSON(ventas);
     				PrintWriter write = response.getWriter();
     				if(respuesta==200) {
     					System.out.println("Grabacion Exitosa: " + respuesta);
     				} else {
-    					write.println ("Error Venta" + respuesta);
+    					write.println ("Error Venta: " + respuesta);
     			}
     			write.close();
 				
@@ -583,13 +588,20 @@ public class Controlador extends HttpServlet {
 			}catch (Exception e) {
 				e.printStackTrace();
 				
-    		}
-}else {
     			
-    			//muestro por primera vez el numero de la factura
-    			//long factura =request.setAttribute("numerofactura", numfac);
-    			//this.mostrartFactura(factura,request, response);
-              }
+				
+    		}
+    			
+    		}//else{
+    			 // ********* Muestro por primera vez el número de la factura *****************
+    			    //try {
+    				//numfac=TestJSONVentas.getConsecutivo();
+    				//request.setAttribute("numerofactura", numfac);
+    			    //} catch (Exception e) {
+    				//e.printStackTrace();
+    			   // }
+    			//}
+
     		request.getRequestDispatcher("/Ventas.jsp").forward(request, response);
     		break;
     	case "Reportes":
