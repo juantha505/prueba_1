@@ -21,8 +21,8 @@ import org.json.simple.parser.ParseException;
 public class TestJSONVentas {
 	
 	private static URL url;
-	private static String sitio = "http://localhost:5000/";
-	//private static String sitio = "http://localhost:8080/DigitalTic-0.0.1-SNAPSHOT/";
+	//private static String sitio = "http://localhost:5000/";
+	private static String sitio = "http://localhost:8080/DigitalTic-0.0.1-SNAPSHOT/";
 	
 	public static ArrayList<Ventas> parsingVentas(String json) throws ParseException {	
 		JSONParser jsonParser = new JSONParser();
