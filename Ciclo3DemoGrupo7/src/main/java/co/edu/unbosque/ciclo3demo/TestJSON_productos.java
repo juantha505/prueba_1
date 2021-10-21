@@ -19,6 +19,7 @@ public class TestJSON_productos {
 	
 	private static URL url;
 	private static String sitio = "http://localhost:5000/";
+	//private static String sitio = "http://localhost:8080/DigitalTic-0.0.1-SNAPSHOT/";
 	
 	public static ArrayList<Productos> parsingProductos(String json) throws ParseException {
 		

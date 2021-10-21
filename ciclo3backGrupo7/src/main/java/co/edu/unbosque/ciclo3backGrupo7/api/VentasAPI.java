@@ -33,10 +33,7 @@ public class VentasAPI {
 		 return ventasDAO.findAll();
 		 
 	 }
-	//@GetMapping("/listar")
-	//public List<Ventas> listar(){
-	//return ventasDAO.findAll();
-	//}
+	
 	
 	@GetMapping("/consecutivo")
 	public Optional<Consecutivo> buscarNextId(){

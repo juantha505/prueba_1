@@ -91,10 +91,34 @@ pageEncoding="UTF-8"%>
                     
                     
                     </c:if>
-                    <c:if  test= "${opcion==3 }">
+                   <c:if  test= "${opcion==3}">
+                     <thead  class= "thead-light">
+                              <tr>
+                                    
+							        <th scope="col">#</th>
+							        <th scope="col">Cedula de cliente</th>
+							        <th scope="col">Cedula de usuario</th>    
+							        <th scope="col">Iva</th>
+							        <th scope="col">Valor venta</th>
+							        <th scope="col">Total</th>
+                
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <c:forEach var="lista" items="${listaVentas}">
+                                  <tr>
+							            <td>${lista.getCodigo_venta()}</td>
+							            <td>${lista.getCedula_cliente()}</td>
+							            <td>${lista.getCedula_usuario()}</td>							            
+							            <td>${lista.getIva_venta()}</td>
+							            <td>${lista.getValor_venta()}</td>
+							            <td>${lista.getTotal_venta()}</td>
+                                  </tr>
+                                  </c:forEach>     
+                              </tbody>
                     
                     
-                    </c:if>     
+                    </c:if>
                     </table>
              </div>
              

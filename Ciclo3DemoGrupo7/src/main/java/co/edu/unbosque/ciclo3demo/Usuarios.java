@@ -10,6 +10,8 @@ public class Usuarios {
 	
 	
 	
+	
+	
 	public long getCedula_usuario() {
 		return cedula_usuario;
 	}

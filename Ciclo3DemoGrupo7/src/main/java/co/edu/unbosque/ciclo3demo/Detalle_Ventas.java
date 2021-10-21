@@ -1,6 +1,4 @@
 
-
-
 package co.edu.unbosque.ciclo3demo;
 
 public class Detalle_Ventas {

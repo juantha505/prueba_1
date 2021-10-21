@@ -19,7 +19,7 @@ public class TestJSONClientes {
 	
 	private static URL url;
 	private static String sitio = "http://localhost:5000/";
-	
+	//private static String sitio = "http://localhost:8080/DigitalTic-0.0.1-SNAPSHOT/";
 	public static ArrayList<Clientes> parsingClientes(String json) throws ParseException {	
 		JSONParser jsonParser = new JSONParser();
 		ArrayList<Clientes> lista = new ArrayList<Clientes>();
@@ -86,6 +86,8 @@ public class TestJSONClientes {
 				+"\",\"telefono_cliente\":\""+cliente.getTelefono_cliente()
 				+"\",\"email_cliente\":\""+cliente.getEmail_cliente()
 				+ "\"}";
+		
+		
 		byte[] out = data.getBytes(StandardCharsets.UTF_8);
 		OutputStream stream = http.getOutputStream();
 		stream.write(out);

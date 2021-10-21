@@ -22,23 +22,23 @@
 		        <div class="form-group">
 		         <input type="hidden" name="menu" value="Proveedores">
 		         <label>Nit Proveedor:</label>
-		         <input type="text" name="txtnitproveedor" class="form-control" value="${proveedorSelecionado.getNitproveedor()}">
+		         <input type="text" name="txtnitproveedor" class="form-control" value="${proveedorSeleccionado.getNitproveedor()}">
 		        </div>
 		        <div class="form-group">
 		         <label>Ciudad Proveedor:</label>
-		         <input type="text" name="txtciudadproveedor" class="form-control" value="${proveedorSelecionado.getCiudad_proveedor()}">
+		         <input type="text" name="txtciudadproveedor" class="form-control" value="${proveedorSeleccionado.getCiudad_proveedor()}">
 		        </div>
 		        <div class="form-group">
 		         <label>Direccion Proveedor:</label>
-		         <input type="text" name="txtdireccionproveedor" class="form-control" value="${proveedorSelecionado.getDireccion_proveedor()}">
+		         <input type="text" name="txtdireccionproveedor" class="form-control" value="${proveedorSeleccionado.getDireccion_proveedor()}">
 		        </div>
 		        <div class="form-group">
 		         <label>Nombre Proveedor:</label>
-		         <input type="text" name="txtnombreproveedor" class="form-control" value="${proveedorSelecionado.getNombre_proveedor()}">
+		         <input type="text" name="txtnombreproveedor" class="form-control" value="${proveedorSeleccionado.getNombre_proveedor()}">
                 </div>
 		        <div class="form-group">
 		        <label>Telefono Proveedor:</label>
-		         <input type="text" name="txttelefonoproveedor" class="form-control" value="${proveedorSelecionado.getTelefono_proveedor()}">
+		         <input type="text" name="txttelefonoproveedor" class="form-control" value="${proveedorSeleccionado.getTelefono_proveedor()}">
 		        </div>
 		        
 		        <input type="submit" class="btn btn-primary" name="accion" value="Agregar">
